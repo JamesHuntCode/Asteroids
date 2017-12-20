@@ -1,0 +1,10 @@
+C:\Users\james\Desktop\Coding Projects\Asteroids\Asteroids\bin\Debug\Asteroids.exe.config
+C:\Users\james\Desktop\Coding Projects\Asteroids\Asteroids\bin\Debug\Asteroids.exe
+C:\Users\james\Desktop\Coding Projects\Asteroids\Asteroids\bin\Debug\Asteroids.pdb
+C:\Users\james\Desktop\Coding Projects\Asteroids\Asteroids\obj\Debug\Asteroids.csprojResolveAssemblyReference.cache
+C:\Users\james\Desktop\Coding Projects\Asteroids\Asteroids\obj\Debug\Asteroids.Form1.resources
+C:\Users\james\Desktop\Coding Projects\Asteroids\Asteroids\obj\Debug\Asteroids.Properties.Resources.resources
+C:\Users\james\Desktop\Coding Projects\Asteroids\Asteroids\obj\Debug\Asteroids.csproj.GenerateResource.Cache
+C:\Users\james\Desktop\Coding Projects\Asteroids\Asteroids\obj\Debug\Asteroids.csproj.CoreCompileInputs.cache
+C:\Users\james\Desktop\Coding Projects\Asteroids\Asteroids\obj\Debug\Asteroids.exe
+C:\Users\james\Desktop\Coding Projects\Asteroids\Asteroids\obj\Debug\Asteroids.pdb
