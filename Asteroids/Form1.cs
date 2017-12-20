@@ -22,6 +22,7 @@ namespace Asteroids
             this.Text = "Asteroids - James Hunt";
             this.Height = 740;
             this.Width = 715;
+
             this.picCanvas.Height = 700;
             this.picCanvas.Width = 700;
             this.picCanvas.Location = new Point(0, 0);
@@ -37,7 +38,7 @@ namespace Asteroids
         private void initGame()
         {
             // Initialize player icon
-            this.playerIcon = new Spaceship(10, this.Width / 2, this.Height /2 , (this.Width / 2) + 10, (this.Height / 2) + 10, (this.Width / 2) - 10, (this.Height / 2) + 10);
+            this.playerIcon = new Spaceship(this.Width / 2, this.Height / 2, ((this.Width / 2) + 20), ((this.Height / 2) + 40), ((this.Width / 2) - 20), ((this.Height / 2) + 40));
 
             // Timer to draw game
             Timer refreshGame = new Timer();
@@ -71,16 +72,16 @@ namespace Asteroids
             switch (e.KeyCode)
             {
                 case Keys.Up:
-
+                    this.playerIcon.Fly(1);
                     break;
                 case Keys.Down:
-
+                    this.playerIcon.Fly(2);
                     break;
                 case Keys.Left:
-
+                    this.playerIcon.Fly(3);
                     break;
                 case Keys.Right:
-
+                    this.playerIcon.Fly(4);
                     break;
             }
         }

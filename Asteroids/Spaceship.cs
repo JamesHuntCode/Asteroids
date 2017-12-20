@@ -9,30 +9,41 @@ namespace Asteroids
 {
     class Spaceship
     {
-        int sideLength;
+        // Properties:
         Point topCoord;
+        int topX;
+        int topY;
+
         Point leftCoord;
+        int leftX;
+        int leftY;
+
         Point rightCoord;
-        
+        int rightX;
+        int rightY;
+
+        // Flight Mechanics:
+        int velocity = 0;
+        int gravity = 0;
+        int acceleration = 0;
 
         // Constructor:
-        public Spaceship(int sLen, int topX, int topY, int leftX, int leftY, int rightX, int rightY)
+        public Spaceship(int topX, int topY, int leftX, int leftY, int rightX, int rightY)
         {
-            this.sideLength = sLen;
+            this.topX = topX;
+            this.topY = topY;
             this.topCoord = new Point(topX, topY);
+
+            this.leftX = leftX;
+            this.leftY = leftY;
             this.leftCoord = new Point(leftX, leftY);
+
+            this.rightX = rightX;
+            this.rightY = rightY;
             this.rightCoord = new Point(rightX, rightY);
         }
 
-        // Setter Methods:
-
-
         // Getter Methods:
-        public int GetSideLength()
-        {
-            return this.sideLength;
-        }
-
         public Point[] GetCoords()
         {
             Point[] coordinates = new Point[3] { this.topCoord, this.rightCoord, this.leftCoord };
@@ -42,7 +53,79 @@ namespace Asteroids
         // Custom Methods:
         public void Rotate(int direction)
         {
-            
+            switch (direction)
+            {
+                case 1: // Up
+
+
+
+                    break;
+                case 2: // Down
+
+
+
+                    break;
+                case 3: // Left
+
+
+
+                    break;
+                case 4: // Right
+
+
+                    break;
+            }
+        }
+
+        public void Fly(int direction)
+        {
+            switch (direction)
+            {
+                case 1: // Up
+
+                    this.topY -= 20;
+                    this.leftY -= 20;
+                    this.rightY -= 20;
+
+                    this.topCoord = new Point(topX, topY);
+                    this.leftCoord = new Point(leftX, leftY);
+                    this.rightCoord = new Point(rightX, rightY);
+
+                    break; 
+                case 2: // Down
+
+                    this.topY += 20;
+                    this.leftY += 20;
+                    this.rightY += 20;
+
+                    this.topCoord = new Point(topX, topY);
+                    this.leftCoord = new Point(leftX, leftY);
+                    this.rightCoord = new Point(rightX, rightY);
+
+                    break;
+                case 3: // Left
+
+                    this.topX -= 20;
+                    this.leftX -= 20;
+                    this.rightX -= 20;
+
+                    this.topCoord = new Point(topX, topY);
+                    this.leftCoord = new Point(leftX, leftY);
+                    this.rightCoord = new Point(rightX, rightY);
+
+                    break;
+                case 4: // Right
+
+                    this.topX += 20;
+                    this.leftX += 20;
+                    this.rightX += 20;
+
+                    this.topCoord = new Point(topX, topY);
+                    this.leftCoord = new Point(leftX, leftY);
+                    this.rightCoord = new Point(rightX, rightY);
+
+                    break;
+            }
         }
     }
 }
