@@ -8,5 +8,19 @@ namespace Asteroids
 {
     class Bullet
     {
+        // Constructor:
+        public Bullet()
+        {
+
+        }
+
+        // Setter Methods:
+
+
+        // Getter Methods:
+
+
+        // Custom Methods:
+
     }
 }

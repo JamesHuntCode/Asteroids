@@ -12,6 +12,8 @@ namespace Asteroids
 {
     public partial class Form1 : Form
     {
+        Spaceship playerIcon;
+
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +26,7 @@ namespace Asteroids
             this.picCanvas.Width = 700;
             this.picCanvas.Location = new Point(0, 0);
 
+            this.KeyDown += this.keyPressed;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,6 +36,9 @@ namespace Asteroids
 
         private void initGame()
         {
+            // Initialize player icon
+            this.playerIcon = new Spaceship(10, this.Width / 2, this.Height /2 , (this.Width / 2) + 10, (this.Height / 2) + 10, (this.Width / 2) - 10, (this.Height / 2) + 10);
+
             // Timer to draw game
             Timer refreshGame = new Timer();
             refreshGame.Interval = 20;
@@ -45,15 +51,38 @@ namespace Asteroids
             // Draw canvas
             Graphics asteroids = this.picCanvas.CreateGraphics();
             asteroids.Clear(ColorTranslator.FromHtml("#333"));
-            
+
+            // Brushes used
+            SolidBrush whiteBrush = new SolidBrush(Color.White);
+
             // Draw asteroids
 
 
             // Draw player icon (spaceship)
-
+            
+            asteroids.FillPolygon(whiteBrush, this.playerIcon.GetCoords());
 
             // Draw bullets
 
+        }
+
+        private void keyPressed(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+
+                    break;
+                case Keys.Down:
+
+                    break;
+                case Keys.Left:
+
+                    break;
+                case Keys.Right:
+
+                    break;
+            }
         }
     }
 }
