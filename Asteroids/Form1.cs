@@ -60,8 +60,9 @@ namespace Asteroids
 
 
             // Draw player icon (spaceship)
-            
             asteroids.FillPolygon(whiteBrush, this.playerIcon.GetCoords());
+            this.playerIcon.Fly();
+            this.playerIcon.Bounds(0, this.Height, 0, this.Width);
 
             // Draw bullets
 
@@ -72,16 +73,16 @@ namespace Asteroids
             switch (e.KeyCode)
             {
                 case Keys.Up:
-                    this.playerIcon.Fly(1);
+                    this.playerIcon.ApplyMovement(1);
                     break;
                 case Keys.Down:
-                    this.playerIcon.Fly(2);
+                    this.playerIcon.ApplyMovement(2);
                     break;
                 case Keys.Left:
-                    this.playerIcon.Fly(3);
+                    this.playerIcon.ApplyMovement(3);
                     break;
                 case Keys.Right:
-                    this.playerIcon.Fly(4);
+                    this.playerIcon.ApplyMovement(4);
                     break;
             }
         }
