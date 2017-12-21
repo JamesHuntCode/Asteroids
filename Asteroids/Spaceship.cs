@@ -97,33 +97,37 @@ namespace Asteroids
 
         public void Bounds(int top, int bottom, int left, int right)
         {
-            /*if ()
+            // Ship too far left
+            if (this.topX < left && this.leftX < left && this.rightX < left)
             {
-                this.topCoord = new Point();
-                this.leftCoord = new Point();
-                this.rightCoord = new Point();
+                this.topX = right;
+                this.leftX = right + 40;
+                this.rightX = right + 40;
             }
 
-            if ()
+            // Ship too far right
+            if (this.topX > right && this.leftX > right && this.leftX > right)
             {
-                this.topCoord = new Point();
-                this.leftCoord = new Point();
-                this.rightCoord = new Point();
+                this.topX = left;
+                this.leftX = left - 40;
+                this.rightX = left - 40;
             }
 
-            if ()
+            // Ship too high
+            if (this.topY < top && this.leftY < top && this.rightY < top)
             {
-                this.topCoord = new Point();
-                this.leftCoord = new Point();
-                this.rightCoord = new Point();
+                this.topY = bottom;
+                this.leftY = bottom + 40;
+                this.rightY = bottom + 40;
             }
 
-            if (ALL 3 POINTS ARE OVER THE EDGE - USE THIS FOR ALL)
+            // Ship too low
+            if (this.topY > bottom && this.leftY > bottom && this.rightY > bottom)
             {
-                this.topCoord = new Point();
-                this.leftCoord = new Point();
-                this.rightCoord = new Point();
-            }*/
+                this.topY = top;
+                this.leftY = top - 40;
+                this.rightY = top - 40;
+            }
         }
 
         public void ApplyMovement(int direction)
