@@ -50,9 +50,34 @@ namespace Asteroids
 
             // Initialize asteroids
             Random rnd = new Random();
-            for (int i = 0; i < 1; i++)
+            int randomS;
+            int randomX, randomY;
+            int randomVelX, randomVelY;
+            int tempVelX = -1, tempVelY = -1;
+
+            for (int i = 0; i < 5; i++)
             {
-                this.asteroids.Add(new Asteroid(0, 0, 100, rnd.Next(1), rnd.Next(1)));
+                randomVelX = rnd.Next(-3, 3);
+                randomVelY = rnd.Next(-3, 3);
+
+                while (randomVelX == tempVelX || randomVelX == 0)
+                {
+                    randomVelX = rnd.Next(1, 3);
+                }
+
+                while (randomVelY == tempVelY || randomVelY == 0)
+                {
+                    randomVelY = rnd.Next(1, 3);
+                }
+
+                randomS = rnd.Next(50, 150);
+                randomX = rnd.Next(0, this.Width);
+                randomY = rnd.Next(0, this.Height);
+
+                this.asteroids.Add(new Asteroid(randomX, randomY, randomS, randomVelX, randomVelY));
+
+                tempVelX = randomVelX;
+                tempVelY = randomVelY;
             }
 
             // Timer to draw game
@@ -75,11 +100,13 @@ namespace Asteroids
             // Colors used
             SolidBrush whiteBrush = new SolidBrush(Color.White);
             Pen whitePen = new Pen(Color.White);
+            whitePen.Width = 3;
 
             // Draw asteroids
             for (int i = 0; i < this.asteroids.Count; i++)
             {
                 asteroids.DrawEllipse(whitePen, Convert.ToInt32(this.asteroids[i].GetX()), Convert.ToInt32(this.asteroids[i].GetY()), Convert.ToInt32(this.asteroids[i].GetS()), Convert.ToInt32(this.asteroids[i].GetS()));
+                this.asteroids[i].Move();
             }
 
             // Draw player icon (spaceship)
