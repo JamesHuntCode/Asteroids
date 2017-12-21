@@ -12,7 +12,11 @@ namespace Asteroids
 {
     public partial class Form1 : Form
     {
+        #region setup 
+
         Spaceship playerIcon;
+        private List<Asteroid> asteroids = new List<Asteroid>();
+        private List<Bullet> bullets = new List<Bullet>();
 
         public Form1()
         {
@@ -35,17 +39,25 @@ namespace Asteroids
             this.initGame();
         }
 
+        #endregion
+
+        #region prepare game (load objects)
+
         private void initGame()
         {
             // Initialize player icon
-            this.playerIcon = new Spaceship(this.Width / 2, this.Height / 2, ((this.Width / 2) + 20), ((this.Height / 2) + 40), ((this.Width / 2) - 20), ((this.Height / 2) + 40));
+            this.playerIcon = new Spaceship(this.Width / 2, this.Height / 2, ((this.Width / 2) - 20), ((this.Height / 2) + 40), ((this.Width / 2) + 20), ((this.Height / 2) + 40));
 
             // Timer to draw game
             Timer refreshGame = new Timer();
-            refreshGame.Interval = 20;
+            refreshGame.Interval = 30;
             refreshGame.Tick += new EventHandler(draw);
             refreshGame.Start();
         }
+
+        #endregion
+
+        #region draw (play game)
 
         private void draw(object sender, EventArgs e)
         {
@@ -61,12 +73,17 @@ namespace Asteroids
 
             // Draw player icon (spaceship)
             asteroids.FillPolygon(whiteBrush, this.playerIcon.GetCoords());
+            this.playerIcon.UpdatePos();
             this.playerIcon.Fly();
             this.playerIcon.Bounds(0, this.Height, 0, this.Width);
 
             // Draw bullets
 
         }
+
+        #endregion 
+
+        #region movement control 
 
         private void keyPressed(object sender, KeyEventArgs e)
         {
@@ -84,7 +101,12 @@ namespace Asteroids
                 case Keys.Right:
                     this.playerIcon.ApplyMovement(4);
                     break;
+                case Keys.Space:
+                    // Shoot
+                    break;
             }
         }
+
+        #endregion 
     }
 }

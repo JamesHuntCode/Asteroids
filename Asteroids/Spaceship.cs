@@ -28,6 +28,11 @@ namespace Asteroids
         double resistance = 0.5;
         double movementForce = 10;
 
+        // Rotation Mechanics:
+        double rotateVal = 1;
+        double centerX;
+        double centerY;
+
         // Constructor:
         public Spaceship(int topX, int topY, int leftX, int leftY, int rightX, int rightY)
         {
@@ -42,29 +47,27 @@ namespace Asteroids
             this.rightX = rightX;
             this.rightY = rightY;
             this.rightCoord = new Point(rightX, rightY);
+
+            this.centerX = Convert.ToInt32(this.rightX) - 10;
+            this.centerY = Convert.ToInt32(this.topY) - 20;
         }
 
         // Getter Methods:
         public Point[] GetCoords()
         {
-            Point[] coordinates = new Point[3] { this.topCoord, this.rightCoord, this.leftCoord };
-            return coordinates;
+            return new Point[3] { this.topCoord, this.rightCoord, this.leftCoord };
         }
         
         // Custom Methods:
         public void Fly()
         {
-            this.topX += this.velX;
+            /*this.topX += this.velX;
             this.leftX += this.velX;
             this.rightX += this.velX;
       
             this.topY += this.velY;
             this.leftY += this.velY;
             this.rightY += this.velY;
-
-            this.topCoord = new Point(Convert.ToInt32(topX), Convert.ToInt32(topY));
-            this.leftCoord = new Point(Convert.ToInt32(leftX), Convert.ToInt32(leftY));
-            this.rightCoord = new Point(Convert.ToInt32(rightX), Convert.ToInt32(rightY));
 
             if (this.velY < 0)
             {
@@ -82,12 +85,45 @@ namespace Asteroids
             else if (this.velX > 0)
             {
                 this.velX -= this.resistance;
-            }
+            }*/
+        }
+
+        public void UpdatePos()
+        {
+            this.topCoord = new Point(Convert.ToInt32(this.topX), Convert.ToInt32(this.topY));
+            this.leftCoord = new Point(Convert.ToInt32(this.leftX), Convert.ToInt32(this.leftY));
+            this.rightCoord = new Point(Convert.ToInt32(this.rightX), Convert.ToInt32(this.rightY));
         }
 
         public void Bounds(int top, int bottom, int left, int right)
         {
+            /*if ()
+            {
+                this.topCoord = new Point();
+                this.leftCoord = new Point();
+                this.rightCoord = new Point();
+            }
 
+            if ()
+            {
+                this.topCoord = new Point();
+                this.leftCoord = new Point();
+                this.rightCoord = new Point();
+            }
+
+            if ()
+            {
+                this.topCoord = new Point();
+                this.leftCoord = new Point();
+                this.rightCoord = new Point();
+            }
+
+            if (ALL 3 POINTS ARE OVER THE EDGE - USE THIS FOR ALL)
+            {
+                this.topCoord = new Point();
+                this.leftCoord = new Point();
+                this.rightCoord = new Point();
+            }*/
         }
 
         public void ApplyMovement(int direction)
@@ -95,24 +131,24 @@ namespace Asteroids
             switch (direction)
             {
                 case 1: // Up
-
+                    this.Rotate(1);
+                    this.rotateVal = 1;
                     this.velY -= this.movementForce;
-
                     break; 
                 case 2: // Down
-
-                    this.velY += this.movementForce;
-
+                    this.Rotate(2);
+                    this.rotateVal = 2;
+                    this.velY += this.movementForce;                    
                     break;
                 case 3: // Left
-
+                    this.Rotate(3);
+                    this.rotateVal = 3;
                     this.velX -= this.movementForce;
-
                     break;
                 case 4: // Right
-
+                    this.Rotate(4);
+                    this.rotateVal = 4;
                     this.velX += this.movementForce;
-
                     break;
             }
         }
@@ -123,21 +159,50 @@ namespace Asteroids
             {
                 case 1: // Up
 
+                    if (this.rotateVal != 1)
+                    {
+                        this.leftX = topX - 20;
+                        this.leftY = topY + 40;
 
-
+                        this.rightX = topX + 20;
+                        this.rightY = topY + 40;
+                    }
+             
                     break;
                 case 2: // Down
 
+                    if (this.rotateVal != 2)
+                    {
+                        this.leftX = topX + 20;
+                        this.leftY = topY - 40;
 
+                        this.rightX = topX - 20;
+                        this.rightY = topY - 40;
+                    }
 
                     break;
                 case 3: // Left
 
+                    if (this.rotateVal != 3)
+                    {
+                        this.leftX = topX + 40;
+                        this.leftY = topY + 20;
 
-
+                        this.rightX = topX + 40;
+                        this.rightY = topY - 20;
+                    }
+                    
                     break;
                 case 4: // Right
 
+                    if (this.rotateVal != 4)
+                    {
+                        this.leftX = topX - 40;
+                        this.leftY = topY - 20;
+
+                        this.rightX = topX - 40;
+                        this.rightY = topY + 20;
+                    }
 
                     break;
             }
