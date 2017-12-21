@@ -61,7 +61,7 @@ namespace Asteroids
         // Custom Methods:
         public void Fly()
         {
-            /*this.topX += this.velX;
+            this.topX += this.velX;
             this.leftX += this.velX;
             this.rightX += this.velX;
       
@@ -85,7 +85,7 @@ namespace Asteroids
             else if (this.velX > 0)
             {
                 this.velX -= this.resistance;
-            }*/
+            }
         }
 
         public void UpdatePos()
@@ -161,6 +161,7 @@ namespace Asteroids
 
                     if (this.rotateVal != 1)
                     {
+                        this.topY = this.topY - 40;
                         this.leftX = topX - 20;
                         this.leftY = topY + 40;
 
@@ -173,6 +174,7 @@ namespace Asteroids
 
                     if (this.rotateVal != 2)
                     {
+                        this.topY = this.topY + 40;
                         this.leftX = topX + 20;
                         this.leftY = topY - 40;
 
@@ -185,6 +187,7 @@ namespace Asteroids
 
                     if (this.rotateVal != 3)
                     {
+                        this.topX = this.topX - 40;
                         this.leftX = topX + 40;
                         this.leftY = topY + 20;
 
@@ -197,6 +200,7 @@ namespace Asteroids
 
                     if (this.rotateVal != 4)
                     {
+                        this.topX = this.topX + 40;
                         this.leftX = topX - 40;
                         this.leftY = topY - 20;
 
