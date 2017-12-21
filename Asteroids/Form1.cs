@@ -107,6 +107,7 @@ namespace Asteroids
             {
                 asteroids.DrawEllipse(whitePen, Convert.ToInt32(this.asteroids[i].GetX()), Convert.ToInt32(this.asteroids[i].GetY()), Convert.ToInt32(this.asteroids[i].GetS()), Convert.ToInt32(this.asteroids[i].GetS()));
                 this.asteroids[i].Move();
+                this.asteroids[i].Bounds(0, 0, this.Height, this.Width);
             }
 
             // Draw player icon (spaceship)

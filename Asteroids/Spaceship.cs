@@ -25,11 +25,11 @@ namespace Asteroids
         // Flight Mechanics:
         double velX = 0;
         double velY = 0;
-        double resistance = 0.5;
+        double resistance = 0.2;
         double movementForce = 10;
 
         // Rotation Mechanics:
-        double rotateVal = 1;
+        int rotateVal = 1;
         double centerX;
         double centerY;
 
@@ -56,6 +56,11 @@ namespace Asteroids
         public Point[] GetCoords()
         {
             return new Point[3] { this.topCoord, this.rightCoord, this.leftCoord };
+        }
+
+        public int GetRotateValue()
+        {
+            return this.rotateVal;
         }
         
         // Custom Methods:
@@ -97,32 +102,26 @@ namespace Asteroids
 
         public void Bounds(int top, int bottom, int left, int right)
         {
-            // Ship too far left
-            if (this.topX < left && this.leftX < left && this.rightX < left)
+            if (this.topX < left && this.leftX < left && this.rightX < left) 
             {
                 this.topX = right;
                 this.leftX = right + 40;
                 this.rightX = right + 40;
             }
-
-            // Ship too far right
-            if (this.topX > right && this.leftX > right && this.leftX > right)
+            else if (this.topX > right && this.leftX > right && this.rightX > right) 
             {
                 this.topX = left;
                 this.leftX = left - 40;
                 this.rightX = left - 40;
             }
 
-            // Ship too high
-            if (this.topY < top && this.leftY < top && this.rightY < top)
+            if (this.topY < top && this.leftY < top && this.rightY < top) 
             {
                 this.topY = bottom;
                 this.leftY = bottom + 40;
                 this.rightY = bottom + 40;
             }
-
-            // Ship too low
-            if (this.topY > bottom && this.leftY > bottom && this.rightY > bottom)
+            else if (this.topY > bottom && this.leftY > bottom && this.rightY > bottom) 
             {
                 this.topY = top;
                 this.leftY = top - 40;

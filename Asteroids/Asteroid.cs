@@ -29,7 +29,10 @@ namespace Asteroids
         }
 
         // Setter Methods:
-
+        public void SetHealth(int h)
+        {
+            this.health = h;
+        }
 
         // Getter Methods:
         public double GetX()
@@ -61,7 +64,23 @@ namespace Asteroids
 
         public void Bounds(int top, int left, int bottom, int right)
         {
-            // Check screen position of asteroid
+            if (this.posX > right)
+            {
+                this.posX = left - this.size;
+            }
+            else if (this.posX + this.size < left)
+            {
+                this.posX = right;
+            }
+
+            if (this.posY > bottom)
+            {
+                this.posY = top - this.size;
+            }
+            else if (this.posY + this.size < top)
+            {
+                this.posY = bottom;
+            }
         }
 
         public bool HitsPlayer(Spaceship that)
