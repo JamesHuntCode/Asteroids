@@ -59,6 +59,9 @@ namespace Asteroids
             {
                 randomVelX = rnd.Next(-3, 3);
                 randomVelY = rnd.Next(-3, 3);
+                randomS = rnd.Next(50, 150);
+                randomX = rnd.Next(0, this.Width);
+                randomY = rnd.Next(0, this.Height);
 
                 while (randomVelX == tempVelX || randomVelX == 0)
                 {
@@ -70,9 +73,15 @@ namespace Asteroids
                     randomVelY = rnd.Next(1, 3);
                 }
 
-                randomS = rnd.Next(50, 150);
-                randomX = rnd.Next(0, this.Width);
-                randomY = rnd.Next(0, this.Height);
+                while (randomX > (this.Width / 2) && randomX < (this.Width / 2) + 50)
+                {
+                    randomX = rnd.Next(0, this.Width);
+                }
+
+                while (randomY > (this.Height / 2) && randomY < (this.Height) / 2 + 50)
+                {
+                    randomY = rnd.Next(0, this.Height);
+                }
 
                 this.asteroids.Add(new Asteroid(randomX, randomY, randomS, randomVelX, randomVelY));
 
@@ -106,12 +115,19 @@ namespace Asteroids
             for (int i = 0; i < this.asteroids.Count; i++)
             {
                 asteroids.DrawEllipse(whitePen, Convert.ToInt32(this.asteroids[i].GetX()), Convert.ToInt32(this.asteroids[i].GetY()), Convert.ToInt32(this.asteroids[i].GetS()), Convert.ToInt32(this.asteroids[i].GetS()));
+
                 this.asteroids[i].Move();
                 this.asteroids[i].Bounds(0, 0, this.Height, this.Width);
+
+                if (this.asteroids[i].HitsPlayer(this.playerIcon))
+                {
+                    Application.Restart();
+                }
             }
 
             // Draw player icon (spaceship)
             asteroids.FillPolygon(whiteBrush, this.playerIcon.GetCoords());
+
             this.playerIcon.UpdatePos();
             this.playerIcon.Fly();
             this.playerIcon.Bounds(0, this.Height, 0, this.Width);

@@ -62,6 +62,16 @@ namespace Asteroids
         {
             return this.rotateVal;
         }
+
+        public double GetGeneralPosX()
+        {
+            return this.leftX + 10;
+        }
+
+        public double GetGeneralPosY()
+        {
+            return this.topY;
+        }
         
         // Custom Methods:
         public void Fly()

@@ -12,7 +12,6 @@ namespace Asteroids
         double posX;
         double posY;
         double size;
-        int health = 200;
 
         // Movement Mechanics:
         double velX;
@@ -26,12 +25,6 @@ namespace Asteroids
             this.size = s;
             this.velX = vX;
             this.velY = vY;
-        }
-
-        // Setter Methods:
-        public void SetHealth(int h)
-        {
-            this.health = h;
         }
 
         // Getter Methods:
@@ -48,11 +41,6 @@ namespace Asteroids
         public double GetS()
         {
             return this.size;
-        }
-
-        public int GetHealth()
-        {
-            return this.health;
         }
 
         // Custom Methods:
@@ -85,8 +73,10 @@ namespace Asteroids
 
         public bool HitsPlayer(Spaceship that)
         {
-            // Come back to this (write intersection method)
-            return true;
+            return !(this.posY > that.GetGeneralPosY() + 40 ||
+                this.posY + this.size < that.GetGeneralPosY() ||
+                this.posX > that.GetGeneralPosX() + 10 ||
+                this.posX + this.size < that.GetGeneralPosX() - 10);
         }
     }
 }
