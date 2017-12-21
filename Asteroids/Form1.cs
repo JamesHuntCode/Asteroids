@@ -48,6 +48,13 @@ namespace Asteroids
             // Initialize player icon
             this.playerIcon = new Spaceship(this.Width / 2, this.Height / 2, ((this.Width / 2) - 20), ((this.Height / 2) + 40), ((this.Width / 2) + 20), ((this.Height / 2) + 40));
 
+            // Initialize asteroids
+            Random rnd = new Random();
+            for (int i = 0; i < 1; i++)
+            {
+                this.asteroids.Add(new Asteroid(0, 0, 100, rnd.Next(1), rnd.Next(1)));
+            }
+
             // Timer to draw game
             Timer refreshGame = new Timer();
             refreshGame.Interval = 30;
@@ -65,11 +72,15 @@ namespace Asteroids
             Graphics asteroids = this.picCanvas.CreateGraphics();
             asteroids.Clear(ColorTranslator.FromHtml("#333"));
 
-            // Brushes used
+            // Colors used
             SolidBrush whiteBrush = new SolidBrush(Color.White);
+            Pen whitePen = new Pen(Color.White);
 
             // Draw asteroids
-
+            for (int i = 0; i < this.asteroids.Count; i++)
+            {
+                asteroids.DrawEllipse(whitePen, Convert.ToInt32(this.asteroids[i].GetX()), Convert.ToInt32(this.asteroids[i].GetY()), Convert.ToInt32(this.asteroids[i].GetS()), Convert.ToInt32(this.asteroids[i].GetS()));
+            }
 
             // Draw player icon (spaceship)
             asteroids.FillPolygon(whiteBrush, this.playerIcon.GetCoords());
