@@ -11,18 +11,20 @@ namespace Asteroids
         // Properties
         int posX;
         int posY;
-        int height = 15;
-        int width = 5;
+        int height;
+        int width;
         int velX;
         int velY;
 
         // Constructor:
-        public Bullet(int x, int y, int vX, int vY)
+        public Bullet(int x, int y, int vX, int vY, int h, int w)
         {
             this.posX = x;
             this.posY = y;
             this.velX = vX;
             this.velY = vY;
+            this.height = h;
+            this.width = w;
         }
 
         // Getter Methods:

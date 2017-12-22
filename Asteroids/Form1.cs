@@ -164,19 +164,19 @@ namespace Asteroids
 
                     if (this.playerIcon.GetRotateValue() == 1) // Shoot up
                     {
-                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 0, -10));
+                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX() + 5), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 0, -15, 15, 5));
                     }
                     else if (this.playerIcon.GetRotateValue() == 2) // Shoot down
                     {
-                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 0, 10));
+                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX() - 30), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 0, 15, 15, 5));
                     }
                     else if (this.playerIcon.GetRotateValue() == 3) // Shoot left
                     {
-                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), -10, 0));
+                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()) - 30, Convert.ToInt32(this.playerIcon.GetGeneralPosY()), -15, 0, 5, 15));
                     }
                     else // Shoot right
                     {
-                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 10, 0));
+                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 15, 0, 5, 15));
                     }
 
                     break;
