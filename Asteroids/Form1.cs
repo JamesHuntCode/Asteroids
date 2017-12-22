@@ -133,7 +133,11 @@ namespace Asteroids
             this.playerIcon.Bounds(0, this.Height, 0, this.Width);
 
             // Draw bullets
-
+            for (int i = 0; i < this.bullets.Count; i++)
+            {
+                asteroids.FillRectangle(whiteBrush, this.bullets[i].GetPosX(), this.bullets[i].GetPosY(), this.bullets[i].GetW(), this.bullets[i].GetH());
+                this.bullets[i].Move();
+            }
         }
 
         #endregion 
@@ -157,7 +161,24 @@ namespace Asteroids
                     this.playerIcon.ApplyMovement(4);
                     break;
                 case Keys.Space:
-                    // Shoot
+
+                    if (this.playerIcon.GetRotateValue() == 1) // Shoot up
+                    {
+                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 0, -10));
+                    }
+                    else if (this.playerIcon.GetRotateValue() == 2) // Shoot down
+                    {
+                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 0, 10));
+                    }
+                    else if (this.playerIcon.GetRotateValue() == 3) // Shoot left
+                    {
+                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), -10, 0));
+                    }
+                    else // Shoot right
+                    {
+                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 10, 0));
+                    }
+
                     break;
             }
         }
