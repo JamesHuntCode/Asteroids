@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Asteroids
 {
@@ -11,20 +12,18 @@ namespace Asteroids
         // Properties
         int posX;
         int posY;
-        int height;
-        int width;
+        int height = 5;
+        int width = 5;
         int velX;
         int velY;
 
         // Constructor:
-        public Bullet(int x, int y, int vX, int vY, int h, int w)
+        public Bullet(int x, int y, int vX, int vY)
         {
             this.posX = x;
             this.posY = y;
             this.velX = vX;
             this.velY = vY;
-            this.height = h;
-            this.width = w;
         }
 
         // Getter Methods:
@@ -53,6 +52,12 @@ namespace Asteroids
         {
             this.posX += this.velX;
             this.posY += this.velY;
+        }
+
+        public bool HitsAsteroid(Asteroid asteroid)
+        {
+            return (this.posY > asteroid.GetY() && this.posY < asteroid.GetY() + asteroid.GetS() &&
+                this.posX > asteroid.GetX() && this.posX < asteroid.GetX() + asteroid.GetS());
         }
     }
 }

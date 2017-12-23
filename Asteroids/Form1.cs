@@ -137,6 +137,16 @@ namespace Asteroids
             {
                 asteroids.FillRectangle(whiteBrush, this.bullets[i].GetPosX(), this.bullets[i].GetPosY(), this.bullets[i].GetW(), this.bullets[i].GetH());
                 this.bullets[i].Move();
+
+                for (int j = 0; j < this.asteroids.Count; j++)
+                {
+                    Asteroid currentAsteroid = this.asteroids[j];
+                    if (this.bullets[i].HitsAsteroid(currentAsteroid))
+                    {
+                        // Tracking = fully functional - make the asteroid break up 
+                        this.bullets.Remove(this.bullets[i]);
+                    }
+                }
             }
         }
 
@@ -164,19 +174,19 @@ namespace Asteroids
 
                     if (this.playerIcon.GetRotateValue() == 1) // Shoot up
                     {
-                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX() + 5), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 0, -15, 15, 5));
+                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX() + 5), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 0, -20));
                     }
                     else if (this.playerIcon.GetRotateValue() == 2) // Shoot down
                     {
-                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX() - 30), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 0, 15, 15, 5));
+                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX() - 30), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 0, 20));
                     }
                     else if (this.playerIcon.GetRotateValue() == 3) // Shoot left
                     {
-                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()) - 30, Convert.ToInt32(this.playerIcon.GetGeneralPosY()), -15, 0, 5, 15));
+                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()) - 30, Convert.ToInt32(this.playerIcon.GetGeneralPosY()), -20, 0));
                     }
                     else // Shoot right
                     {
-                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 15, 0, 5, 15));
+                        this.bullets.Add(new Bullet(Convert.ToInt32(this.playerIcon.GetGeneralPosX()), Convert.ToInt32(this.playerIcon.GetGeneralPosY()), 20, 0));
                     }
 
                     break;
