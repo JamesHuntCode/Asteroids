@@ -147,16 +147,25 @@ namespace Asteroids
                     }
                     else
                     {
+                        Random rnd = new Random();
                         for (int j = 0; j < this.asteroids.Count; j++)
                         {
                             if (this.bullets[i].HitsAsteroid(this.asteroids[j]))
                             {
                                 if (this.asteroids[j].GetS() >= 100)
                                 {
-                                    // Break asteroid into 2 smaller asteroids
+                                    // Add 2 new asteroids 
+                                    int velX = rnd.Next(-3, 3), velY = rnd.Next(-3, 3), velX2 = rnd.Next(-3, 3), velY2 = rnd.Next(-3, 3);
+                                    while (velX == 0 || velY == 0 || velX == velX2 || velY == velY2)
+                                    {
+                                        velX = rnd.Next(-3, 3); 
+                                        velY = rnd.Next(-3, 3);
+                                        velX2 = rnd.Next(-3, 3);
+                                        velY2 = rnd.Next(-3, 3);
+                                    }
+                                    this.asteroids.Add(new Asteroid(Convert.ToInt32(this.asteroids[j].GetX()), Convert.ToInt32(this.asteroids[j].GetY()), Convert.ToInt32(this.asteroids[j].GetS()) / 2, velX, velY));
+                                    this.asteroids.Add(new Asteroid(Convert.ToInt32(this.asteroids[j].GetX()), Convert.ToInt32(this.asteroids[j].GetY()), Convert.ToInt32(this.asteroids[j].GetS()) / 2, velX2, velY2));
                                     this.asteroids.Remove(this.asteroids[j]);
-                                    // BREAK DOWN ASTEROID HERE
-                                    
                                 } 
                                 else
                                 {
@@ -166,6 +175,10 @@ namespace Asteroids
                             }
                         }
                     }
+                }
+                else
+                {
+                    this.bullets.Remove(this.bullets[i]);
                 }
             }
         }
