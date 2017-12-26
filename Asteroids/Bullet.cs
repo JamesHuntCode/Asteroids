@@ -16,6 +16,7 @@ namespace Asteroids
         int width = 5;
         int velX;
         int velY;
+        bool isActive = true;
 
         // Constructor:
         public Bullet(int x, int y, int vX, int vY)
@@ -47,11 +48,38 @@ namespace Asteroids
             return this.width;
         }
 
+        public bool GetStatus()
+        {
+            return this.isActive;
+        }
+
+        // Setter Methods:
+        public void SetStatus(bool newCondition)
+        {
+            this.isActive = newCondition;
+        }
+
         // Custom Methods:
         public void Move()
         {
             this.posX += this.velX;
             this.posY += this.velY;
+        }
+
+        public bool OffScreen(int left, int right, int top, int bottom)
+        {
+            // Check left & right
+            if (this.posX + this.width < left || this.posX > right)
+            {
+                return true;
+            }
+
+            // Check top & bottom
+            if (this.posY + this.height < top || this.posY > bottom)
+            {
+                return true;
+            }
+            return false;
         }
 
         public bool HitsAsteroid(Asteroid asteroid)

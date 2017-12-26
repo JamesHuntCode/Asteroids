@@ -14,7 +14,7 @@ namespace Asteroids
     {
         #region setup 
 
-        Spaceship playerIcon;
+        private Spaceship playerIcon;
         private List<Asteroid> asteroids = new List<Asteroid>();
         private List<Bullet> bullets = new List<Bullet>();
 
@@ -59,7 +59,7 @@ namespace Asteroids
             {
                 randomVelX = rnd.Next(-3, 3);
                 randomVelY = rnd.Next(-3, 3);
-                randomS = rnd.Next(50, 150);
+                randomS = rnd.Next(100, 150);
                 randomX = rnd.Next(0, this.Width);
                 randomY = rnd.Next(0, this.Height);
 
@@ -122,6 +122,7 @@ namespace Asteroids
                 if (this.asteroids[i].HitsPlayer(this.playerIcon))
                 {
                     Application.Restart();
+                    Environment.Exit(0);
                 }
             }
 
@@ -135,16 +136,35 @@ namespace Asteroids
             // Draw bullets
             for (int i = 0; i < this.bullets.Count; i++)
             {
-                asteroids.FillRectangle(whiteBrush, this.bullets[i].GetPosX(), this.bullets[i].GetPosY(), this.bullets[i].GetW(), this.bullets[i].GetH());
-                this.bullets[i].Move();
-
-                for (int j = 0; j < this.asteroids.Count; j++)
+                if (this.bullets[i].GetStatus())
                 {
-                    Asteroid currentAsteroid = this.asteroids[j];
-                    if (this.bullets[i].HitsAsteroid(currentAsteroid))
+                    asteroids.FillRectangle(whiteBrush, this.bullets[i].GetPosX(), this.bullets[i].GetPosY(), this.bullets[i].GetW(), this.bullets[i].GetH());
+                    this.bullets[i].Move();
+
+                    if (this.bullets[i].OffScreen(0, this.Width, 0, this.Height))
                     {
-                        // Tracking = fully functional - make the asteroid break up 
                         this.bullets.Remove(this.bullets[i]);
+                    }
+                    else
+                    {
+                        for (int j = 0; j < this.asteroids.Count; j++)
+                        {
+                            if (this.bullets[i].HitsAsteroid(this.asteroids[j]))
+                            {
+                                if (this.asteroids[j].GetS() >= 100)
+                                {
+                                    // Break asteroid into 2 smaller asteroids
+                                    this.asteroids.Remove(this.asteroids[j]);
+                                    // BREAK DOWN ASTEROID HERE
+                                    
+                                } 
+                                else
+                                {
+                                    this.asteroids.Remove(this.asteroids[j]);
+                                }
+                                this.bullets[i].SetStatus(false);
+                            }
+                        }
                     }
                 }
             }
